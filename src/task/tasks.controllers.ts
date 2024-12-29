@@ -9,7 +9,7 @@ export class TaskController {
 		try {
 			const { title, description, status } = req.body
 			const task = await this.taskService.createTask({ title, description, status })
-			return res.status(200).json({ message: 'Task created', task })
+			res.status(200).json({ message: 'Task created', task })
 		} catch (error) {
 			next(error)
 		}
@@ -18,7 +18,7 @@ export class TaskController {
 	getTasks = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const tasks = await this.taskService.getTasks()
-			return res.status(200).json(tasks)
+			res.status(200).json(tasks)
 		} catch (error) {
 			next(error)
 		}
@@ -41,7 +41,7 @@ export class TaskController {
 				description,
 				status,
 			})
-			return res.status(200).json({ message: 'Task updated', task })
+			res.status(200).json({ message: 'Task updated', task })
 		} catch (error) {
 			next(error)
 		}
@@ -50,7 +50,7 @@ export class TaskController {
 	deleteTask = async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			await this.taskService.deleteTask(req.params.id)
-			return res.status(200).json({ message: 'Task deleted' })
+			res.status(200).json({ message: 'Task deleted' })
 		} catch (error) {
 			next(error)
 		}
