@@ -7,6 +7,7 @@ import express, {
 } from 'express'
 import swaggerUi from 'swagger-ui-express'
 import swaggerJsDoc from 'swagger-jsdoc'
+import cors from 'cors'
 
 export class Server {
 	public app = express()
@@ -21,6 +22,7 @@ export class Server {
 	async start() {
 		this.app.use(express.json())
 		this.app.use(express.urlencoded({ extended: true }))
+		this.app.use(cors())
 
 		this.app.use(this.routes)
 

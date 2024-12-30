@@ -10,6 +10,10 @@ export class TaskService {
 	}
 
 	async getTasks() {
+		const tasks = await TaskModel.find()
+		if (tasks.length < 1) {
+			throw new CustomError('Tasks not found', 404)
+		}
 		return await TaskModel.find()
 	}
 
