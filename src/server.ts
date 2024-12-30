@@ -20,9 +20,20 @@ export class Server {
 	}
 
 	async start() {
+		this.app.use(
+			cors({
+				origin: ['http://localhost:5173'],
+				allowedHeaders: [
+					'Content-Type',
+					'Authorization',
+					'Content-Length',
+					'X-Requested-With',
+				],
+				methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+			})
+		)
 		this.app.use(express.json())
 		this.app.use(express.urlencoded({ extended: true }))
-		this.app.use(cors())
 
 		this.app.use(this.routes)
 

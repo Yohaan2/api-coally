@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from 'express'
 export const validateCreateTask = [
 	body('title', 'Parametro requerido').exists().not().isEmpty().isString(),
 	body('description').optional().isString(),
-	body('status').isBoolean(),
+	body('status').exists().isString(),
 	(req: Request, res: Response, next: NextFunction) => {
 		validateResult(req, res, next)
 	},

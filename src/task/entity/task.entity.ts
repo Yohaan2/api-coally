@@ -1,7 +1,7 @@
 export class TaskEntity {
 	constructor(
 		public title: string,
-		public status: boolean,
+		public status: 'completed' | 'pending',
 		public description?: string
 	) {}
 }

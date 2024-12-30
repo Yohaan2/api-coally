@@ -4,16 +4,19 @@ import { TaskEntity } from './entity/task.entity'
 
 export class TaskService {
 	async createTask(payload: TaskEntity) {
-		const task = new TaskModel(payload)
+		const optionsList = { completed: true, pending: false }
+
+		const data = {
+			...payload,
+			status: optionsList[payload.status],
+		}
+		const task = new TaskModel(data)
 		await task.save()
 		return task
 	}
 
 	async getTasks() {
 		const tasks = await TaskModel.find()
-		if (tasks.length < 1) {
-			throw new CustomError('Tasks not found', 404)
-		}
 		return await TaskModel.find()
 	}
 
@@ -27,6 +30,7 @@ export class TaskService {
 	}
 
 	async updateTask(id: string, taskEntity: TaskEntity) {
+		const optionsList = { completed: true, pending: false }
 		const task = await TaskModel.findById(id)
 
 		if (!task) {
@@ -35,7 +39,7 @@ export class TaskService {
 
 		task.title = taskEntity.title
 		task.description = taskEntity.description || task.description
-		task.status = taskEntity.status
+		task.status = optionsList[taskEntity.status]
 
 		await task.save()
 		return task
