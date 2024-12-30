@@ -105,11 +105,11 @@ El servidor estará disponible en `http://localhost:3001`.
 **POST /tasks/filter**
 
 ```json
-{
+[{
 	"title": "Tarea actualizada",
 	"description": "Descripción actualizada",
 	"status": true
-}
+}]
 ```
 
 Valores permitidos para `filter`: `"completed"`, `"pending"`, `"all"`.
