@@ -52,4 +52,11 @@ export class TaskService {
 		}
 		return await TaskModel.findByIdAndDelete(id)
 	}
+
+	async filterTasks(status: 'completed' | 'pending' | 'all') {
+		const optionsList = { completed: true, pending: false }
+		if (status === 'all') return await TaskModel.find()
+		const tasks = await TaskModel.find({ status: optionsList[status] })
+		return tasks
+	}
 }

@@ -17,3 +17,5 @@ export const validateIdParam = [
 		validateResult(req, res, next)
 	},
 ]
+
+export const validateFilterBody = [body('status').exists().not().isEmpty()]

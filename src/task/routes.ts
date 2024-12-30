@@ -1,6 +1,10 @@
 import { Router } from 'express'
 import { TaskController } from './tasks.controllers'
-import { validateCreateTask, validateIdParam } from '../middleware/validators'
+import {
+	validateCreateTask,
+	validateFilterBody,
+	validateIdParam,
+} from '../middleware/validators'
 import { TaskService } from './tasks.service'
 
 export class TaskRoutes {
@@ -13,6 +17,7 @@ export class TaskRoutes {
 		router.get('/tasks/:id', validateIdParam, controller.getTaskById)
 		router.put('/tasks/:id', controller.updateTask)
 		router.delete('/tasks/:id', controller.deleteTask)
+		router.post('/tasks/filter', validateFilterBody, controller.filterTask)
 		return router
 	}
 }

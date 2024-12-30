@@ -55,4 +55,15 @@ export class TaskController {
 			next(error)
 		}
 	}
+
+	filterTask = async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const { status } = req.body
+			console.log(status)
+			const tasks = await this.taskService.filterTasks(status)
+			res.status(200).json(tasks)
+		} catch (error) {
+			next(error)
+		}
+	}
 }
