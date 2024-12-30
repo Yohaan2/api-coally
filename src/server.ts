@@ -22,7 +22,7 @@ export class Server {
 	async start() {
 		this.app.use(
 			cors({
-				origin: ['http://localhost:5173'],
+				origin: ['http://localhost:5173', 'https://client-coally.vercel.app/'],
 				allowedHeaders: [
 					'Content-Type',
 					'Authorization',
